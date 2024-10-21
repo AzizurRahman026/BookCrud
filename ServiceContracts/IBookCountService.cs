@@ -6,7 +6,7 @@ namespace ServiceContracts
     {
         // countryResponse AddCountry(CountryAddRequest? countryAddRequest);
         int addBook(AddBookRequest book);
-        int removeBook(int id, int count=0);
+        int removeBook(removeBook info);
         int currentBook();
     }
 }

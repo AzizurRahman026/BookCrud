@@ -1,6 +1,7 @@
 ﻿using System.Collections.Specialized;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using Service;
 using ServiceContracts;
 using ServiceContracts.DTO;
@@ -10,6 +11,7 @@ namespace bookCRUD.Controllers
     public class HomeController : Controller
     {
         public IBookCountService bookCountServices;
+        
 
         public HomeController(IBookCountService bookCountService)
         {
@@ -20,7 +22,16 @@ namespace bookCRUD.Controllers
         [HttpGet("/")]
         public IActionResult Index()
         {
+            Log.Information("\n\nBook Home Page Test...\n");
             return Ok("Home Page");
+        }
+
+        // Name formatting
+        [HttpPost("/name")]
+        public IActionResult Name(string? name)
+        {
+            Console.WriteLine("Coming Name through API: " + name);
+            return Ok(name);
         }
 
         // API to add a certain number of books
@@ -39,7 +50,8 @@ namespace bookCRUD.Controllers
         [HttpDelete("remove-book")]
         public IActionResult RemoveBook([FromBody] removeBook info)
         {
-            Console.WriteLine($"Book id: {info.id}\nBook count: {info.count}\n");
+
+            // Console.WriteLine($"Book id: {info.id}\nBook count: {info.count}\n");
             if (info.count > 0)
             {
                 var cnt = bookCountServices.removeBook(info);
@@ -53,7 +65,7 @@ namespace bookCRUD.Controllers
         public IActionResult CountCurrentBook()
         {
             var currentAvailableBook = bookCountServices.currentBook();
-            Console.WriteLine("current AvailableBook...");
+            // Console.WriteLine($"current AvailableBook...{currentAvailableBook}");
             return Ok($"Current No of Books: {currentAvailableBook}");
         }
     }

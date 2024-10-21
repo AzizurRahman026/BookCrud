@@ -1,0 +1,13 @@
+2024-10-21 11:46:26.220 +06:00 [INF] Now listening on: http://localhost:5015
+2024-10-21 11:46:26.241 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-21 11:46:26.242 +06:00 [INF] Hosting environment: Development
+2024-10-21 11:46:26.242 +06:00 [INF] Content root path: C:\Users\azizur\Learn\dotNet\BookCrudTest\BookCrudTest
+2024-10-21 11:46:26.443 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/ - null null
+2024-10-21 11:46:26.482 +06:00 [INF] Executing endpoint 'bookCRUD.Controllers.HomeController.Index (BookCrudTest)'
+2024-10-21 11:46:26.492 +06:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller bookCRUD.Controllers.HomeController (BookCrudTest).
+2024-10-21 11:46:26.495 +06:00 [INF] This is an information log.
+2024-10-21 11:46:26.496 +06:00 [INF] Book adding endPoints...
+2024-10-21 11:46:26.502 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-10-21 11:46:26.507 +06:00 [INF] Executed action bookCRUD.Controllers.HomeController.Index (BookCrudTest) in 12.1606ms
+2024-10-21 11:46:26.510 +06:00 [INF] Executed endpoint 'bookCRUD.Controllers.HomeController.Index (BookCrudTest)'
+2024-10-21 11:46:26.511 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/ - 200 null text/plain; charset=utf-8 69.7662ms

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using System.Reflection.Metadata.Ecma335;
 using Entities;
 using ServiceContracts;
 using ServiceContracts.DTO;
@@ -36,48 +37,50 @@ namespace Service
                 _books.Add(book);
             }
 
+            totalBook += addBook.numberOfBook;
+
             foreach (Book b in _books)
             {
-                Console.WriteLine($"Book id: {b.bookID}\nBookName is: {b.bookName}\nBookAuthor id is: {b.bookAuthor}\nNumber of Book: {b.numberOfBook}");
+                Console.WriteLine(
+                    $"Book id: {b.bookID}\nBookName is: {b.bookName}\nBookAuthor id is: {b.bookAuthor}\nNumber of Book: {b.numberOfBook}");
             }
 
-            Console.WriteLine();
-            
             Console.WriteLine($"Book Added Successfully.");
             return totalBook;
         }
 
         public int removeBook(removeBook info)
         {
-            int idx = _books.Count;
+            int idx = _books.Count, id = (int)info.id, cnt = (int)info.count;
+            Console.WriteLine($"Id: {id} count: {cnt}");
             for (int i = 0; i < _books.Count; ++i)
             {
-                if (_books[i].bookID == info.id) idx = i;
+                if (_books[i].bookID == id) idx = i;
             }
 
             if (idx < _books.Count)
             {
-                int count = Int32.Parse(info.count);
                 Console.WriteLine("Book removes successfully...");
-                count = Math.Min(_books[idx].numberOfBook, count);
-                _books[idx].numberOfBook -= count;
-                totalBook -= count;
-                if (totalBook < 0)
+                cnt = Math.Min(_books[idx].numberOfBook, cnt);
+                _books[idx].numberOfBook -= cnt;
+                totalBook -= cnt;
+                if (totalBook <= 0)
                 {
                     totalBook = 0;
+                    _books.RemoveAt(idx);
                 }
             }
             else
             {
                 Console.WriteLine("Book removes not successfull...");
-                count = 0;
+                cnt = 0;
             }
-            return count;
+            return cnt;
         }
 
         public int currentBook()
         {
-            Console.WriteLine("Hello I am coming from interface class...");
+            // Console.WriteLine("Hello I am coming from interface class...");
             // return 1000;
             return totalBook;
         }
